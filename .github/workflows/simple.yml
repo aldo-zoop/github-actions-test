@@ -11,4 +11,9 @@
           run: |
             node -v
             npm -v
+        - name: python Command
+          run: |
+            import plataform
+            print(platform.processor())
+          shell: python
 
