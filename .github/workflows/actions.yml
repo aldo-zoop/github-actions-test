@@ -1,5 +1,7 @@
 name: Actions Workflow
-on: [push, pull_request]
+on:
+  push:
+  pull_request: [closed, assigned, opened, reopened]
 jobs:
   run-github-actions:
     runs-on: ubuntu-latest
