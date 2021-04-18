@@ -10,7 +10,7 @@ jobs:
         run: |
           echo ${{ contains('hello', 'll' ) }}
           echo ${{ startsWith( 'hello', 'he' ) }}
-          echo ${{ enddWith('hello', 'lo' ) }}
+          echo ${{ endsWith('hello', 'lo' ) }}
           echo ${{ format('Hello {0} {1} {2}', 'World', '!', '!' ) }}
   one:
     runs-on: ubuntu-latest
