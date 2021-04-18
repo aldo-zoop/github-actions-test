@@ -9,6 +9,8 @@
       steps:
         - name: echo a string
           run: echo "Going on"
+          timeout-minutes: 1
+          continue-on-error: true
         - name: multiple commands
           run: |
             node -v
