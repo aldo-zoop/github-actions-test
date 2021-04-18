@@ -9,7 +9,7 @@ jobs:
       - name: dunmp
         run: |
           echo ${{ contains('hello', 'll' ) }}
-          echo ${{ startdWith( 'hello', 'he' ) }}
+          echo ${{ startsWith( 'hello', 'he' ) }}
           echo ${{ enddWith('hello', 'lo' ) }}
           echo ${{ format('Hello {0} {1} {2}', 'World', '!', '!' ) }}
   one:
