@@ -46,6 +46,8 @@ jobs:
           else
             echo "::set-output name=test::on fire"
           fi
+      - name: print
+        run: echo ${{steps.step1.outputs.stdout}} ${{steps.step2.outputs.output2}}
   job2:
     runs-on: ubuntu-latest
     needs: job1
