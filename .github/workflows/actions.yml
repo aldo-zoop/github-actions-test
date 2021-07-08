@@ -41,6 +41,7 @@ jobs:
             echo "::set-output name=test::world"
           else
             echo "::set-output name=test::on fire"
+          fi
   job2:
     runs-on: ubuntu-latest
     needs: job1
