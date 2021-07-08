@@ -30,14 +30,14 @@ jobs:
     steps:
       - id: step1
         run: |
-          if [ -f random.txt ]; then
+          if [ -f "random.txt" ]; then
             echo "::set-output name=test::hello"
           else
             echo "::set-output name=test::hell"
           fi
       - id: step2
         run: |
-          if [ -f README.md ]; then
+          if [ -f "README.md" ]; then
             echo "::set-output name=test::world"
           else
             echo "::set-output name=test::on fire"
