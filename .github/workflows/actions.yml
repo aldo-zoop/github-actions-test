@@ -28,8 +28,9 @@ jobs:
       output1: ${{ steps.step1.outputs.test }}
       output2: ${{ steps.step2.outputs.test }}
     steps:
-      - id: step1
+      - name: checkout
         uses: actions/checkout@v1
+      - id: step1
         run: |
           ls
           pwd
