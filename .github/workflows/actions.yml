@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - section2
+      - test
       - master
       - 'feature/*'
       - '!release/*'
