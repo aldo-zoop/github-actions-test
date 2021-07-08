@@ -30,6 +30,8 @@ jobs:
     steps:
       - id: step1
         run: |
+          ls
+          pwd
           if [ -f "random.txt" ]; then
             echo "::set-output name=test::hello"
           else
