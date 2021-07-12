@@ -45,6 +45,7 @@ jobs:
             echo "::set-output name=test::world"
           else
             echo "::set-output name=test::on fire"
+            exit 1
           fi
       - name: print
         run: echo "${{steps.step1.outputs.test}} ${{steps.step2.outputs.test}}"
