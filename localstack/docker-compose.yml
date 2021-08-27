@@ -1,8 +1,8 @@
 version: "3.6"
 
 networks:
-  bridge:
-    name: "bridge"
+  bridge1:
+    name: "bridge1"
     driver: bridge
 
 volumes:
@@ -28,9 +28,9 @@ services:
       - AWS_REGION=us-east-1
       - LAMBDA_EXECUTOR=docker
       - LAMBDA_REMOVE_CONTAINERS=true
-      - LAMBDA_DOCKER_NETWORK=bridge
+      - LAMBDA_DOCKER_NETWORK=bridge1
     networks:
-      - bridge
+      - bridge1
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - localstack:/tmp/localstack/data
