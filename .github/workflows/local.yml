@@ -1,0 +1,35 @@
+name: Localstack
+
+on:
+  issue_comment:
+    types: [created]
+
+env:
+  TF_VERSION: 1.0.3
+  TF_WORKING_DIR: deployment/terraform
+  AWS_ACCESS_KEY_ID: "test"
+  AWS_SECRET_ACCESS_KEY: "test"
+
+jobs:
+  validation:
+    if: (github.event.comment.body == 'localstack run')
+    name: Localstack
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v1
+      - name: Run docker-compose
+        id: docker_compose_up
+        run: |
+          ls
+          pwd
+          docker-compose up --file localstack/local.yml up -d
+      - name: Check logs
+        run: docker logs backend
+      - name: Run docker-compose
+        id: docker_compose_down
+        run: |
+          ls
+          docker-compose --file localstack/local.yml down -d
+      - name: Check logs
+        run: docker ps

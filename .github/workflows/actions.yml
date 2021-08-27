@@ -34,14 +34,15 @@ jobs:
         run: |
           ls
           pwd
-          if [ -f "random.txt" ]; then
+          if [ -f "$PWD/random.txt" ]; then
             echo "::set-output name=test::hello"
           else
             echo "::set-output name=test::hell"
           fi
+          echo $PWD
       - id: step2
         run: |
-          if [ -f "README.md" ]; then
+          if [ -f "$PWD/README.md" ]; then
             echo "::set-output name=test::world"
           else
             echo "::set-output name=test::on fire"
