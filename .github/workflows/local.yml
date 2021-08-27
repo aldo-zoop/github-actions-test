@@ -28,6 +28,8 @@ jobs:
           sleep 120
       - name: Check ps
         run: docker ps
+      - name: Check logs
+        run: docker logs localstack_localstack-target_1
       - name: Run docker-compose down
         id: docker_compose_down
         run: |
