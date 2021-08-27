@@ -23,7 +23,7 @@ jobs:
         run: |
           ls
           pwd
-          docker-compose -f localstack/docker-compose.yml up --force-recreate
+          docker-compose -f localstack/docker-compose.yml up --force-recreate -d
       - name: Check ps
         run: docker ps
       - name: Run docker-compose down
@@ -31,6 +31,6 @@ jobs:
         run: |
           ls
           pwd
-          docker-compose -f localstack/docker-compose.yml down -d
+          docker-compose -f localstack/docker-compose.yml down
       - name: Check ps
         run: docker ps
