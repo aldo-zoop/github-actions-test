@@ -23,7 +23,7 @@ jobs:
         run: |
           ls
           pwd
-          docker-compose up --file localstack/local.yml up
+          docker-compose -f localstack/local.yml up
       - name: Check ps
         run: docker ps
       - name: Run docker-compose down
@@ -31,6 +31,6 @@ jobs:
         run: |
           ls
           pwd
-          docker-compose --file localstack/local.yml down -d
+          docker-compose -f localstack/local.yml down -d
       - name: Check ps
         run: docker ps
