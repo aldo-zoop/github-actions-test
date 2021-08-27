@@ -1,7 +1,7 @@
 version: "3.6"
 
 networks:
-  zoop-webhooks-bridge:
+  bridge:
     name: "bridge"
     driver: bridge
 
