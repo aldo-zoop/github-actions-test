@@ -6,7 +6,8 @@ on:
 
 env:
   TF_VERSION: 1.0.3
-  TF_WORKING_DIR: deployment/terraform
+  DEFAULT_REGION: "us-east-1"
+  AWS_ACCOUNT_ID: "111111111111"
   AWS_ACCESS_KEY_ID: "test"
   AWS_SECRET_ACCESS_KEY: "test"
 
@@ -17,13 +18,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: Run docker-compose up
         id: docker_compose_up
         run: |
           ls
           pwd
           docker-compose -f localstack/docker-compose.yml up --force-recreate -d
+          sleep 120
       - name: Check ps
         run: docker ps
       - name: Run docker-compose down
