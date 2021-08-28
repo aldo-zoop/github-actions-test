@@ -39,14 +39,17 @@ jobs:
         run: docker logs localstack_localstack-target_1
       - uses: hashicorp/setup-terraform@v1
 
+      - name: Starting terraform
+        run: cd terraform/
+
       - name: Terraform fmt
         id: fmt
-        run: terraform fmt terraform/ -check
+        run: terraform fmt -check
         continue-on-error: true
 
       - name: Terraform Init
         id: init
-        run: terraform init terraform/
+        run: terraform init
 
       - name: Terraform Validate
         id: validate
@@ -54,7 +57,7 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan terraform/ -no-color
+        run: terraform plan -no-color
         continue-on-error: true
 
       - uses: actions/github-script@0.9.0
