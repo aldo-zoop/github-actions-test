@@ -16,6 +16,9 @@ jobs:
     if: (github.event.comment.body == 'localstack run')
     name: Localstack
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: /home/runner/work/github-actions-test/github-actions-test
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -42,26 +45,23 @@ jobs:
         run: |
           pwd
           ls
-          cd terraform/
-          pwd
-          ls
       - uses: hashicorp/setup-terraform@v1
       - name: Terraform fmt
         id: fmt
-        run: terraform fmt -check
+        run: terraform fmt -check terraform/
         continue-on-error: true
 
       - name: Terraform Init
         id: init
-        run: terraform init
+        run: terraform init terraform/
 
       - name: Terraform Validate
         id: validate
-        run: terraform validate -no-color
+        run: terraform validate -no-color terraform/
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan -no-color
+        run: terraform plan -no-color terraform/
         continue-on-error: true
 
       - uses: actions/github-script@0.9.0
