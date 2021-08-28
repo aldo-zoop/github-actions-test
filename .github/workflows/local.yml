@@ -26,8 +26,9 @@ jobs:
         id: docker_compose_up
         run: |
           ls
+          ls ../
           pwd
-          docker-compose -f localstack/docker-compose.yml up --force-recreate -d
+          docker-compose -f ../localstack/docker-compose.yml up --force-recreate -d
           echo "Waiting for localstack/health, attempting every 5s"
           sleep 30
           until $(curl --fail http://localhost:4566/health | grep "\"lambda\": \"running\"" > /dev/null); do
@@ -93,6 +94,6 @@ jobs:
       - name: Run docker-compose down
         id: docker_compose_down
         run: |
-          docker-compose -f localstack/docker-compose.yml down
+          docker-compose -f ../localstack/docker-compose.yml down
       - name: Check ps
         run: docker ps
