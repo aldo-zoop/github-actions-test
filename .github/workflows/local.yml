@@ -37,11 +37,15 @@ jobs:
         run: docker ps
       - name: Check logs
         run: docker logs localstack_localstack-target_1
-      - uses: hashicorp/setup-terraform@v1
 
       - name: Starting terraform
-        run: cd terraform/
-
+        run: |
+          pwd
+          ls
+          cd terraform/
+          pwd
+          ls
+      - uses: hashicorp/setup-terraform@v1
       - name: Terraform fmt
         id: fmt
         run: terraform fmt -check
