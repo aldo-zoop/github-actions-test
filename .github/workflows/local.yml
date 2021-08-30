@@ -17,9 +17,6 @@ jobs:
     if: (github.event.comment.body == 'localstack run')
     name: Localstack
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: /home/runner/work/github-actions-test/github-actions-test/terraform
     steps:
       - name: checkout
         uses: actions/checkout@v2
