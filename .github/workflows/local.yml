@@ -17,6 +17,9 @@ jobs:
     if: (github.event.comment.body == 'localstack run')
     name: Localstack
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR }}
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -26,7 +29,7 @@ jobs:
           ls
           ls ../
           pwd
-          docker-compose -f localstack/docker-compose.yml up --force-recreate -d
+          docker-compose -f ../localstack/docker-compose.yml up --force-recreate -d
           echo "Waiting for localstack/health, attempting every 5s"
           sleep 30
           until $(curl --fail http://localhost:4566/health | grep "\"lambda\": \"running\"" > /dev/null); do
@@ -47,28 +50,28 @@ jobs:
       - uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: ${{ env.TF_VERSION }}
-      - name: Terraform fmt ${{ env.WORKING_DIR }}
+      - name: Terraform fmt
         id: fmt
         run: terraform fmt -check
         continue-on-error: true
 
       - name: Terraform Init
         id: init
-        run: terraform init ${{ env.WORKING_DIR }}
+        run: terraform init
         env:
           TF_IN_AUTOMATION: true
           TF_CLI_ARGS_fmt: '-no-color'
 
       - name: Terraform Validate
         id: validate
-        run: terraform validate ${{ env.WORKING_DIR }}
+        run: terraform validate
         env:
           TF_IN_AUTOMATION: true
           TF_CLI_ARGS_fmt: '-no-color'
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan ${{ env.WORKING_DIR }}
+        run: terraform plan
         env:
           TF_IN_AUTOMATION: true
           TF_CLI_ARGS_fmt: '-no-color'
@@ -102,6 +105,6 @@ jobs:
       - name: Run docker-compose down
         id: docker_compose_down
         run: |
-          docker-compose -f localstack/docker-compose.yml down
+          docker-compose -f ../localstack/docker-compose.yml down
       - name: Check ps
         run: docker ps
