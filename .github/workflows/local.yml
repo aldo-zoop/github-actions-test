@@ -24,7 +24,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
         with:
-          ref: "refs/pull/${{ github.event.number }}/merge"
+          ref: ${GITHUB_REF}
       - name: Run docker-compose up
         id: docker_compose_up
         run: |
@@ -49,8 +49,10 @@ jobs:
         run: |
           pwd
           ls
-          echo "refs/pull/${{ github.event.number }}/merge"
+          echo "${{ github.event.number }}"
           echo "${{ github.event.pull_request.head.sha }}"
+          echo "${{github.event.pull_request.base.sha}}"
+          echo "${GITHUB_REF}"
       - uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: ${{ env.TF_VERSION }}
