@@ -72,6 +72,7 @@ jobs:
           echo "commit_id ${{ toJSON(github.event.issue) }}"
           echo "commit_id ${{ toJSON(github.event.comment) }}"
           echo "${{ toJSON(github) }}"
+          echo "Starting terraform"
       - uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: ${{ env.TF_VERSION }}
