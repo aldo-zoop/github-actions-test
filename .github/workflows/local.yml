@@ -49,10 +49,11 @@ jobs:
         run: |
           pwd
           ls
-          echo "${{ github.event.number }}"
-          echo "${{ github.event.pull_request.head.sha }}"
-          echo "${{github.event.pull_request.base.sha}}"
-          echo "${GITHUB_REF}"
+          echo ${{ github.event.number }}
+          echo ${{ github.event.pull_request.head.sha }}
+          echo ${{github.event.pull_request.base.sha}}
+          echo ${GITHUB_REF}
+          echo "commit_id ${{ github.event.comment.commit_id }}"
       - uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: ${{ env.TF_VERSION }}
