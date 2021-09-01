@@ -53,8 +53,9 @@ jobs:
           echo ${{ github.event.pull_request.head.sha }}
           echo ${{github.event.pull_request.base.sha}}
           echo ${GITHUB_REF}
-          echo "commit_id ${{ github.event.issue.commit_id }}"
-          echo "commit_id ${{ github.event.comment.commit_id }}"
+          echo "commit_id ${{ toJSON(github.event.issue) }}"
+          echo "commit_id ${{ toJSON(github.event.comment) }}"
+          echo "${{ toJSON(github) }}"
       - uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: ${{ env.TF_VERSION }}
