@@ -27,4 +27,10 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Send greeting
-      run: echo "Hello ${{ github.event.inputs.name }}"
+      run: |
+        echo "Hello ${{ github.event.inputs.name }}"
+        if [ ${GITHUB_REF} == "refs/head/master" ] && [ ${{ github.event.inputs.name }} == "production" ]; then
+          echo "Go forwad ${GITHUB_REF}"
+        else
+          echo "Hold on ${GITHUB_REF}"
+        fi
