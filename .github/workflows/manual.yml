@@ -29,8 +29,8 @@ jobs:
     - name: Send greeting
       run: |
         echo "Hello ${{ github.event.inputs.name }}"
-        if [ ${GITHUB_REF} == "refs/heads/master" ] && [ ${{ github.event.inputs.name }} == "production" ]; then
-          echo "Go forwad ${GITHUB_REF}"
-        else
+        if [ ${GITHUB_REF} == "refs/heads/master" ] && [ ${{ github.event.inputs.name }} != "production" ]; then
           echo "Hold on ${GITHUB_REF}"
+        else
+          echo "Go forwad ${GITHUB_REF}"
         fi
