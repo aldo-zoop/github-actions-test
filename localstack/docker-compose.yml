@@ -23,7 +23,7 @@ services:
       - DOCKER_HOST=unix:///var/run/docker.sock
       - PORT_WEB_UI=8080
       - EDGE_PORT=4566
-      - SERVICES=logs,iam,lambda,ec2,vpc
+      - SERVICES=logs,iam,lambda,ec2
       - MAIN_CONTAINER_NAME=localstack_localstack-target_1
       - AWS_REGION=us-east-1
       - LAMBDA_EXECUTOR=docker
