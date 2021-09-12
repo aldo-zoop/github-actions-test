@@ -1,13 +1,13 @@
 resource "aws_route_table" "public-route-table" {
   vpc_id = aws_vpc.prod-vpc.id
-  tags {
+  tags = {
     Name = "Public Route table"
   }
 }
 
 resource "aws_route_table" "private-route-table" {
   vpc_id = aws_vpc.prod-vpc.id
-  tags {
+  tags = {
     Name = "Private Route table"
   }
 }

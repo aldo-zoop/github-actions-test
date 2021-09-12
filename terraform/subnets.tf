@@ -3,7 +3,7 @@ resource "aws_subnet" "public-subnet-1" {
   cidr_block        = var.public_subnet_1_cidr
   availability_zone = "us-east-1a"
 
-  tags {
+  tags = {
     Name = "Public Subnet 1"
   }
 }
@@ -13,7 +13,7 @@ resource "aws_subnet" "public-subnet-2" {
   cidr_block        = var.public_subnet_2_cidr
   availability_zone = "us-east-1b"
 
-  tags {
+  tags = {
     Name = "Public Subnet 2"
   }
 }
@@ -23,7 +23,7 @@ resource "aws_subnet" "public-subnet-3" {
   cidr_block        = var.public_subnet_3_cidr
   availability_zone = "us-east-1c"
 
-  tags {
+  tags = {
     Name = "Public Subnet 3"
   }
 }
@@ -33,7 +33,7 @@ resource "aws_subnet" "private-subnet-1" {
   cidr_block        = var.private_subnet_1_cidr
   availability_zone = "us-east-1a"
 
-  tags {
+  tags = {
     Name = "Private Subnet 1"
   }
 }
@@ -43,7 +43,7 @@ resource "aws_subnet" "private-subnet-2" {
   cidr_block        = var.private_subnet_2_cidr
   availability_zone = "us-east-1b"
 
-  tags {
+  tags = {
     Name = "Private Subnet 2"
   }
 }
@@ -53,7 +53,7 @@ resource "aws_subnet" "private-subnet-3" {
   cidr_block        = var.private_subnet_3_cidr
   availability_zone = "us-east-1c"
 
-  tags {
+  tags = {
     Name = "Private Subnet 3"
   }
 }

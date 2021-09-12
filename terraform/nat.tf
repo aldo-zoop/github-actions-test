@@ -3,7 +3,7 @@ resource "aws_nat_gateway" "prod-nat-gateway" {
   subnet_id     = aws_subnet.public-subnet-3.id
   depends_on    = [aws_eip.elastic-ip-for-nat-gtw]
 
-  tags {
+  tags = {
     Name = "Prod NAT"
   }
 }
