@@ -1,11 +1,11 @@
 variable "region" {
-  region = "us-east-1"
+  default = "us-east-1"
 }
 
 
 variable "vpc_cidr" {
-  default    = "10.0.0.0/16"
-  descriptio = "CIDR"
+  default     = "10.0.0.0/16"
+  description = "CIDR"
 }
 
 variable "public_subnet_1_cidr" {
