@@ -92,13 +92,13 @@ jobs:
       - name: Terraform Plan
         if: success()
         id: plan
-        run: terraform plan -no-color
+        run: terraform plan -var-file=prod.tfvars -no-color
         continue-on-error: false
 
       - name: Terraform Apply
         if: success()
         id: apply
-        run: terraform apply -no-color
+        run: terraform apply -var-file=prod.tfvars -no-color -auto-approve
         continue-on-error: true
 
       - uses: actions/github-script@0.9.0
