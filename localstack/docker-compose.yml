@@ -10,7 +10,7 @@ volumes:
 
 services:
   localstack-target:
-    image: localstack/localstack:0.12.7
+    image: localstack/localstack:0.12.17
     hostname: localstack
     ports:
       - 8080:8080

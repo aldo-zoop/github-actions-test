@@ -87,10 +87,18 @@ jobs:
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
+        continue-on-error: true
 
       - name: Terraform Plan
+        if: success()
         id: plan
-        run: terraform plan -no-color
+        run: terraform plan -var-file=prod.tfvars -no-color
+        continue-on-error: false
+
+      - name: Terraform Apply
+        if: success()
+        id: apply
+        run: terraform apply -var-file=prod.tfvars -no-color -auto-approve
         continue-on-error: true
 
       - uses: actions/github-script@0.9.0
@@ -103,6 +111,7 @@ jobs:
             #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
             #### Terraform Validation 🤖${{ steps.validate.outputs.stdout }}
             #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+            #### Terraform Plan 📖\`${{ steps.apply.outcome }}\`
 
             <details><summary>Show Plan</summary>
 
@@ -120,6 +129,7 @@ jobs:
             })
       - name: Run docker-compose down
         id: docker_compose_down
+        if: always()
         run: |
           docker-compose -f ../localstack/docker-compose.yml down
       - name: Check ps
