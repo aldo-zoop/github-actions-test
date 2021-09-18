@@ -115,6 +115,14 @@ jobs:
           terraform apply -var-file=environments/prod.tfvars -no-color -auto-approve ec2/
         continue-on-error: true
 
+      - name: Terraform Destroy
+        id: destroy
+        run: |
+          terraform destroy -var-file=environments/prod.tfvars -no-color -auto-approve ec2/
+          terraform destroy -var-file=environments/prod.tfvars -no-color -auto-approve infraestructure/
+          terraform destroy -no-color -auto-approve setup/
+        continue-on-error: true
+
       - uses: actions/github-script@0.9.0
         env:
           PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"

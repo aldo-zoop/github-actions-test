@@ -1,21 +1,24 @@
 terraform {
   required_providers {
-    aws = "~> 3.0.0"
+    aws = "= 3.29.0"
   }
 
   required_version = ">= 0.12.30"
   backend "s3" {
-    bucket         = "terraform-state"
+    bucket         = "terraformstate"
     key            = "instances/terraform.tfstate"
-    dynamodb_table = "terraform-state-lock"
+    dynamodb_table = "terraformlock"
     region         = "us-east-1"
   }
+  version = "= 3.29.0"
 }
 
 
 provider "aws" {
   profile                     = "default"
   region                      = var.region
+  access_key                  = "test"
+  secret_key                  = "test"
   skip_credentials_validation = true
   skip_requesting_account_id  = true
   skip_metadata_api_check     = true

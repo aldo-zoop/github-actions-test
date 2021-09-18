@@ -1,6 +1,6 @@
 terraform {
   required_providers {
-    aws = "~> 3.0.0"
+    aws = "~> 3.29.0"
   }
 
   required_version = ">= 0.12.30"
@@ -9,28 +9,37 @@ terraform {
 
 provider "aws" {
   region                      = "us-east-1"
-  access_key                  = "foo"
-  secret_key                  = "bar"
+  access_key                  = "test"
+  secret_key                  = "test"
   skip_credentials_validation = true
   skip_requesting_account_id  = true
   skip_metadata_api_check     = true
   s3_force_path_style         = true
   endpoints {
-    cloudwatch     = "http://localhost:4566"
     dynamodb       = "http://localhost:4566"
     iam            = "http://localhost:4566"
     s3             = "http://localhost:4566"
     sns            = "http://localhost:4566"
     sqs            = "http://localhost:4566"
+    cloudwatchlogs = "http://localhost:4566"
   }
+  version = "= 3.29.0"
 }
 
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "terraform-state"
+  bucket = "terraformstate"
   acl    = "private"
 
   versioning {
     enabled = false
+  }
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
   }
 
   lifecycle {
