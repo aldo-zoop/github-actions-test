@@ -7,7 +7,13 @@ terraform {
   }
 
   required_version = ">= 0.14.9"
-  backend "local" {}
+  backend "s3" {
+    bucket         = "terraform-state"
+    key            = "infrastructure/terraform.tfstate"
+    encrypt        = true
+    dynamodb_table = "terraform-state-lock"
+    region         = "us-east-1"
+  }
 }
 
 
@@ -30,14 +36,5 @@ provider "aws" {
     cloudwatchevents = "http://localhost:4566"
     sqs              = "http://localhost:4566"
     ec2              = "http://localhost:4566"
-  }
-}
-
-resource "aws_instance" "app_server" {
-  ami           = "ami-830c94e3"
-  instance_type = "t2.micro"
-
-  tags = {
-    Name = "ExampleAppServerInstance"
   }
 }
