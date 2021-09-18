@@ -1,6 +1,6 @@
 terraform {
   required_providers {
-    aws = "~> 3.0.0"
+    aws = "= 3.29.0"
   }
 
   required_version = ">= 0.12.30"
@@ -10,6 +10,7 @@ terraform {
     dynamodb_table = "terraformlock"
     region         = "us-east-1"
   }
+  version = "= 3.29.0"
 }
 
 
