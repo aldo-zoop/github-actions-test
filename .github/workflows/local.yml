@@ -77,13 +77,19 @@ jobs:
           terraform_version: ${{ env.TF_VERSION }}
       - name: Terraform fmt
         id: fmt
-        run: terraform fmt -check
+        run: terraform fmt -check -recursive
         continue-on-error: true
+
+      - name: Setup bucket
+        id: setup
+        run: |
+          terraform init setup/
+          terraform plan -no-color setup/
+          terraform apply -no-color -auto-approve setup/
 
       - name: Terraform Init
         id: init
         run: |
-          terraform init setup/
           terraform init infraestructure/
           terraform init ec2/
 
@@ -97,7 +103,6 @@ jobs:
         if: success()
         id: plan
         run: |
-          terraform plan -no-color setup/
           terraform plan -var-file=environments/tsprod.tfvars -no-color infraestructure/
           terraform plan -var-file=environments/tsprod.tfvars -no-color ec2/
         continue-on-error: false
@@ -106,7 +111,6 @@ jobs:
         if: success()
         id: apply
         run: |
-          terraform apply -no-color -auto-approve setup/
           terraform apply -var-file=environments/tsprod.tfvars -no-color -auto-approve infraestructure/
           terraform apply -var-file=environments/tsprod.tfvars -no-color -auto-approve ec2/
         continue-on-error: true
