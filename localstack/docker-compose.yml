@@ -16,7 +16,7 @@ services:
       - 8080:8080
       - 4566:4566
     environment:
-      - DATA_DIR=
+      - DATA_DIR=/tmp/localstack/data
       - DEBUG=1
       - DEFAULT_REGION=us-east-1
       - TEST_AWS_ACCOUNT_ID=111111111111
