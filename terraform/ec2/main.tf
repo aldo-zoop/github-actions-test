@@ -5,7 +5,7 @@ terraform {
 
   required_version = ">= 0.12.30"
   backend "s3" {
-    bucket         = "terraform_state"
+    bucket         = "terraformstate"
     key            = "instances/terraform.tfstate"
     dynamodb_table = "terraformlock"
     region         = "us-east-1"
