@@ -9,8 +9,8 @@ terraform {
 
 provider "aws" {
   region                      = "us-east-1"
-  access_key                  = "foo"
-  secret_key                  = "bar"
+  access_key                  = "test"
+  secret_key                  = "test"
   skip_credentials_validation = true
   skip_requesting_account_id  = true
   skip_metadata_api_check     = true
@@ -26,7 +26,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "terraform-state"
+  bucket = "terraform_state"
   acl    = "private"
 
   versioning {
