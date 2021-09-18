@@ -120,6 +120,12 @@ jobs:
         run: |
           terraform destroy -var-file=environments/prod.tfvars -no-color -auto-approve ec2/
           terraform destroy -var-file=environments/prod.tfvars -no-color -auto-approve infraestructure/
+        continue-on-error: true
+
+      - name: Setup Destroy
+        if: always()
+        id: setup_destroy
+        run: |
           terraform destroy -no-color -auto-approve setup/
         continue-on-error: true
 

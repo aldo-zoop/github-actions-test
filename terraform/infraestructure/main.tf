@@ -10,7 +10,6 @@ terraform {
     dynamodb_table = "terraformlock"
     region         = "us-east-1"
   }
-  version = "= 3.29.0"
 }
 
 
@@ -36,4 +35,5 @@ provider "aws" {
     sqs              = "http://localhost:4566"
     ec2              = "http://localhost:4566"
   }
+  version = "= 3.29.0"
 }
