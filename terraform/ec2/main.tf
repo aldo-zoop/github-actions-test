@@ -1,12 +1,9 @@
 terraform {
   required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.27"
-    }
+    aws = "~> 3.0.0"
   }
 
-  required_version = ">= 0.14.9"
+  required_version = ">= 0.12.30"
   backend "s3" {
     bucket         = "terraform-state"
     key            = "instances/terraform.tfstate"
@@ -36,6 +33,5 @@ provider "aws" {
     cloudwatchevents = "http://localhost:4566"
     sqs              = "http://localhost:4566"
     ec2              = "http://localhost:4566"
-    sts              = "http://localhost:4566"
   }
 }
